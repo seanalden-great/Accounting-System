@@ -121,11 +121,13 @@
 
 // export default App
 
+// src/App.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
 import Journals from "./pages/Journals";
+import Products from "./pages/Products"; // 1. Impor komponen Products
 
 export default function App() {
   return (
@@ -135,6 +137,7 @@ export default function App() {
           <Route index element={<Dashboard />} />
           <Route path="accounts" element={<Accounts />} />
           <Route path="journals" element={<Journals />} />
+          <Route path="produk" element={<Products />} /> {/* 2. Tambahkan Route ini */}
         </Route>
       </Routes>
     </BrowserRouter>

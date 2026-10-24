@@ -143,30 +143,39 @@
 // src/components/Sidebar.tsx
 import { Link, useLocation } from "react-router-dom";
 import { 
-  Home, ShoppingBag, ShoppingCart, Receipt, Package, Warehouse, 
-  LineChart, Wallet, Book, Building2, Users, Store, Settings, 
-  HelpCircle, Search, ChevronDown, LogOut, PanelLeftClose, Star
+  Home, Package, Wallet, Book, Search, ChevronDown, LogOut, PanelLeftClose, Star,
+  type LucideIcon // 1. Impor LucideIcon untuk keperluan tipe data
+ // 1. Impor LucideIcon untuk keperluan tipe data
 } from "lucide-react";
+
+// 2. Definisikan tipe data eksplisit agar TypeScript mengenali properti opsional
+type MenuItem = {
+  name: string;
+  icon: LucideIcon;
+  path: string;
+  hasSub?: boolean; // Tanda '?' berarti opsional (boleh ada, boleh tidak)
+  badge?: boolean;  // Tanda '?' berarti opsional
+};
 
 export default function Sidebar() {
   const location = useLocation();
 
-  // Daftar menu tetap dipertahankan
-  const menuItems = [
+  // 3. Pasang tipe MenuItem[] ke variabel ini
+  const menuItems: MenuItem[] = [
     { name: "Beranda", icon: Home, path: "/" },
-    { name: "Penjualan", icon: ShoppingBag, path: "/penjualan", hasSub: true },
-    { name: "Pembelian", icon: ShoppingCart, path: "/pembelian", hasSub: true },
-    { name: "Biaya", icon: Receipt, path: "/biaya" },
+    // { name: "Penjualan", icon: ShoppingBag, path: "/penjualan", hasSub: true },
+    // { name: "Pembelian", icon: ShoppingCart, path: "/pembelian", hasSub: true },
+    // { name: "Biaya", icon: Receipt, path: "/biaya" },
     { name: "Produk", icon: Package, path: "/produk" },
-    { name: "Inventori", icon: Warehouse, path: "/inventori" },
-    { name: "Laporan", icon: LineChart, path: "/laporan" },
+    // { name: "Inventori", icon: Warehouse, path: "/inventori" },
+    // { name: "Laporan", icon: LineChart, path: "/laporan" },
     { name: "Kas & Bank", icon: Wallet, path: "/journals" },
     { name: "Akun", icon: Book, path: "/accounts" },
-    { name: "Aset Tetap", icon: Building2, path: "/aset" },
-    { name: "Kontak", icon: Users, path: "/kontak" },
-    { name: "Marketplace", icon: Store, path: "/marketplace", badge: true },
-    { name: "Pengaturan", icon: Settings, path: "/pengaturan" },
-    { name: "FAQ", icon: HelpCircle, path: "/faq" },
+    // { name: "Aset Tetap", icon: Building2, path: "/aset" },
+    // { name: "Kontak", icon: Users, path: "/kontak" },
+    // { name: "Marketplace", icon: Store, path: "/marketplace", badge: true },
+    // { name: "Pengaturan", icon: Settings, path: "/pengaturan" },
+    // { name: "FAQ", icon: HelpCircle, path: "/faq" },
   ];
 
   return (
