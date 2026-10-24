@@ -1,6 +1,6 @@
 import { formatRupiah } from "../lib/utils";
 import { 
-  Wallet, TrendingUp, TrendingDown, CreditCard, 
+  Wallet, TrendingUp, TrendingDown, 
   Plus, FileText, Activity, ArrowRight, Building2, Receipt
 } from "lucide-react";
 import { 
