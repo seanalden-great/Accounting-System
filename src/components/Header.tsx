@@ -58,7 +58,7 @@
 // src/components/Header.tsx
 import { 
   Plus, Receipt, Monitor, Search, 
-  Bell, Clock, Globe, User, ToggleLeft, PanelLeftClose
+  Bell, Clock, User, ToggleLeft
 } from "lucide-react";
 
 export default function Header() {
