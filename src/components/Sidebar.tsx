@@ -183,29 +183,13 @@ export default function Sidebar() {
       {/* Header Logo */}
       <div className="h-16 flex items-center justify-between px-4 border-b border-slate-800 shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs">
-            K
-          </div>
           <div>
-            <h1 className="text-sm font-bold text-orange-400 leading-tight">PT Berlianmandiri...</h1>
-            <p className="text-[10px] text-slate-400">Elite</p>
+            <h1 className="text-sm font-bold text-orange-400 leading-tight">PT Berlianmandiri Perkasa</h1>
           </div>
         </div>
         <button className="text-slate-400 hover:text-white transition-colors">
           <PanelLeftClose size={18} />
         </button>
-      </div>
-
-      {/* Search Menu (Dark Mode) */}
-      <div className="p-4 shrink-0">
-        <div className="relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input 
-            type="text" 
-            placeholder="Cari menu" 
-            className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-slate-400 transition-all"
-          />
-        </div>
       </div>
       
       {/* Menu List */}
