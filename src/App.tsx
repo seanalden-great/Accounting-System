@@ -128,6 +128,20 @@ import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
 import Journals from "./pages/Journals";
 import Products from "./pages/Products"; // 1. Impor komponen Products
+import CategoryPage from "./pages/CategoryPage";
+import ContactPage from "./pages/ContactPage";
+import PurchaseOrderPage from "./pages/PurchaseOrderPage";
+import PurchaseDeliveryPage from "./pages/PurchaseDeliveryPage";
+import PurchaseBillPage from "./pages/PurchaseBillPage";
+import SalesOrderPage from "./pages/SalesOrderPage";
+import SalesDeliveryPage from "./pages/SalesDeliveryPage";
+import SalesBillPage from "./pages/SalesBillPage";
+import FinancialReportPage from "./pages/FinancialReportPage";
+import ExpensePage from "./pages/ExpensePage";
+import InventoryPage from "./pages/InventoryPage";
+import SettingPage from "./pages/SettingPage";
+import FixedAssetPage from "./pages/FixedAssetPage";
+import FAQPage from "./pages/FAQPage";
 
 export default function App() {
   return (
@@ -137,7 +151,22 @@ export default function App() {
           <Route index element={<Dashboard />} />
           <Route path="accounts" element={<Accounts />} />
           <Route path="journals" element={<Journals />} />
-          <Route path="produk" element={<Products />} /> {/* 2. Tambahkan Route ini */}
+          <Route path="produk" element={<Products />} />
+          <Route path="categories" element={<CategoryPage />} />
+          <Route path="contacts" element={<ContactPage />} />
+          <Route path="purchase/order" element={<PurchaseOrderPage />} />
+          <Route path="purchase/delivery" element={<PurchaseDeliveryPage />} />
+          <Route path="purchase/bill" element={<PurchaseBillPage />} />
+          <Route path="sales/order" element={<SalesOrderPage />} />
+          <Route path="sales/delivery" element={<SalesDeliveryPage />} />
+          <Route path="sales/bill" element={<SalesBillPage />} />
+          <Route path="/reports/profit-loss" element={<FinancialReportPage />} />
+          <Route path="/reports/balance-sheet" element={<FinancialReportPage />} />
+          <Route path="/expenses" element={<ExpensePage />} />
+          <Route path="/inventory" element={<InventoryPage />} />
+          <Route path="/settings" element={<SettingPage />} />
+          <Route path="/fixed-assets" element={<FixedAssetPage />} />
+          <Route path="/faq" element={<FAQPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
