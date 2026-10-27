@@ -234,7 +234,7 @@ import {
 
 type Supplier = { id: number; name: string; };
 type PurchaseItem = { id: number; product_sku: string; quantity: number; price: number; sub_total: number; product: { name: string; unit: string; } };
-type Purchase = { id: number; date: string; due_date: string; reference_no: string; contact: Supplier; total: number; status: string; items: PurchaseItem[] };
+type Purchase = { id: number; date: string; due_date: string; reference_no: string; contact: Supplier; total: number; status: string; items: PurchaseItem[]; payment_account?: { name: string; }; };
 type Bank = { id: string; nama: string; };
 
 export default function PurchaseBillPage() {
@@ -345,6 +345,7 @@ export default function PurchaseBillPage() {
                 <th className="p-4 text-sm font-semibold text-slate-600">No. Referensi</th>
                 <th className="p-4 text-sm font-semibold text-slate-600">Supplier</th>
                 <th className="p-4 text-sm font-semibold text-slate-600">Tgl Lunas</th>
+                <th className="p-4 text-sm font-semibold text-slate-600">Bank Pembayar</th>
                 <th className="p-4 text-sm font-semibold text-slate-600 text-right">Total Dibayar</th>
                 <th className="p-4 text-sm font-semibold text-slate-600 text-center">Status</th>
               </tr>
@@ -360,6 +361,10 @@ export default function PurchaseBillPage() {
                     <td className="p-4 text-sm font-bold text-slate-800">{bill.reference_no || `PO #${bill.id}`}</td>
                     <td className="p-4 text-sm font-medium text-blue-700">{bill.contact.name}</td>
                     <td className="p-4 text-sm text-slate-600">{new Date(bill.due_date).toLocaleDateString('id-ID')}</td>
+                    {/* TAMBAHKAN DATA BANK INI */}
+                    <td className="p-4 text-sm font-bold text-slate-700">
+                      {bill.payment_account ? bill.payment_account.name : <span className="text-slate-400 italic">Tidak Tercatat</span>}
+                    </td>
                     <td className="p-4 text-sm font-bold text-slate-800 text-right">{formatRupiah(bill.total)}</td>
                     <td className="p-4 text-center">
                       <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold flex items-center justify-center gap-1 w-max mx-auto">
