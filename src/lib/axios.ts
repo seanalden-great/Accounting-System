@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: 'https://backend-bmp-internal-system.vercel.app/api',
   headers: {
     'Content-Type': 'application/json',
   },
