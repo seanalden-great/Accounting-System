@@ -524,7 +524,7 @@ export default function Sidebar() {
         <div className="flex items-center gap-2">
           <div><h1 className="text-sm font-bold text-orange-400 leading-tight">PT Berlianmandiri Perkasa</h1></div>
         </div>
-        <button className="text-slate-400 hover:text-white transition-colors"><PanelLeftClose size={18} /></button>
+        {/* <button className="text-slate-400 hover:text-white transition-colors"><PanelLeftClose size={18} /></button> */}
       </div>
       
       <nav className="flex-1 overflow-y-auto px-3 space-y-1 custom-scrollbar pb-4 pt-4">
