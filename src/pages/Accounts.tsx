@@ -222,7 +222,7 @@
 //                 <X size={20} />
 //               </button>
 //             </div>
-            
+
 //             <form onSubmit={handleSubmit} className="p-5 overflow-y-auto custom-scrollbar">
 //               <div className="space-y-4">
 //                 <div>
@@ -232,7 +232,7 @@
 //                     value={formData.code} onChange={(e) => setFormData({...formData, code: e.target.value})}
 //                   />
 //                 </div>
-                
+
 //                 <div>
 //                   <label className="block text-sm font-semibold text-slate-700 mb-1">Nama Akun</label>
 //                   <input type="text" required placeholder="Misal: Bank BNI"
@@ -313,7 +313,7 @@ export default function AccountsPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editCode, setEditCode] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState({
     code: "",
     name: "",
@@ -399,7 +399,7 @@ export default function AccountsPage() {
           <h1 className="text-3xl font-bold text-slate-800">Chart of Accounts</h1>
           <p className="text-slate-500 mt-1">Kelola master data akun keuangan</p>
         </div>
-        <button 
+        <button
           onClick={openAddModal}
           className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition-colors shadow-sm"
         >
@@ -444,8 +444,15 @@ export default function AccountsPage() {
                   <td className="border border-slate-400 p-2 text-center font-medium">{acc.pos}</td>
                   <td className="border border-slate-400 p-2 text-right">{acc.debit ? formatRupiah(acc.debit) : ""}</td>
                   <td className="border border-slate-400 p-2 text-right">{acc.kredit ? formatRupiah(acc.kredit) : ""}</td>
-                  <td className={`border border-slate-400 p-2 text-right ${acc.sisa && acc.sisa > 0 ? 'font-semibold text-blue-700' : ''}`}>
+                  {/* <td className={`border border-slate-400 p-2 text-right ${acc.sisa && acc.sisa > 0 ? 'font-semibold text-blue-700' : ''}`}>
                     {acc.sisa ? formatRupiah(acc.sisa) : ""}
+                  </td> */}
+                  <td className={`border border-slate-400 p-2 text-right ${acc.sisa && acc.sisa > 0 ? 'font-semibold text-blue-700' :
+                      acc.sisa && acc.sisa < 0 ? 'font-bold text-red-600' : ''
+                    }`}>
+                    {acc.sisa !== undefined && acc.sisa !== 0 ? (
+                      acc.sisa < 0 ? `(${formatRupiah(Math.abs(acc.sisa))})` : formatRupiah(acc.sisa)
+                    ) : ""}
                   </td>
                   <td className="border border-slate-400 p-2 text-center">
                     <div className="flex items-center justify-center gap-2">
@@ -476,31 +483,31 @@ export default function AccountsPage() {
                 <X size={20} />
               </button>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="p-5 overflow-y-auto custom-scrollbar">
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-1">Kode Akun</label>
                   <input type="text" required placeholder="Misal: 115"
                     className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-slate-50 disabled:text-slate-500"
-                    value={formData.code} 
-                    onChange={(e) => setFormData({...formData, code: e.target.value})}
+                    value={formData.code}
+                    onChange={(e) => setFormData({ ...formData, code: e.target.value })}
                     disabled={isEditing} // Kode tidak boleh diubah saat mode Edit
                     title={isEditing ? "Kode akun tidak dapat diubah setelah dibuat" : ""}
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-1">Nama Akun</label>
                   <input type="text" required placeholder="Misal: Bank BNI"
                     className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-                    value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
 
                 <div className="flex items-center gap-2 mt-2">
                   <input type="checkbox" id="isHeader" className="w-4 h-4 text-blue-600 rounded border-gray-300"
-                    checked={formData.isHeader} onChange={(e) => setFormData({...formData, isHeader: e.target.checked})}
+                    checked={formData.isHeader} onChange={(e) => setFormData({ ...formData, isHeader: e.target.checked })}
                   />
                   <label htmlFor="isHeader" className="text-sm font-medium text-slate-700 cursor-pointer">
                     Akun Induk (Header)
@@ -511,7 +518,7 @@ export default function AccountsPage() {
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1">Pos Saldo</label>
                     <select className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                      value={formData.pos} onChange={(e) => setFormData({...formData, pos: e.target.value})}
+                      value={formData.pos} onChange={(e) => setFormData({ ...formData, pos: e.target.value })}
                     >
                       <option value="-">- (Netral)</option>
                       <option value="D">D (Debit)</option>
@@ -522,7 +529,7 @@ export default function AccountsPage() {
                     <label className="block text-sm font-semibold text-slate-700 mb-1">Level Indentasi</label>
                     <input type="number" min="0" max="10"
                       className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                      value={formData.level} onChange={(e) => setFormData({...formData, level: parseInt(e.target.value) || 0})}
+                      value={formData.level} onChange={(e) => setFormData({ ...formData, level: parseInt(e.target.value) || 0 })}
                     />
                   </div>
                 </div>
