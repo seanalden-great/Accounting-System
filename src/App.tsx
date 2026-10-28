@@ -145,6 +145,7 @@ import FAQPage from "./pages/FAQPage";
 import { AuthProvider } from "../contexts/AuthContext";
 import LoginPage from "./pages/auth/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RegisterPage from "./pages/auth/RegisterPage";
 
 export default function App() {
   return (
@@ -176,6 +177,7 @@ export default function App() {
         <Routes>
           {/* Rute Publik: Siapapun bisa akses */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} /> {/* <--- 2. TAMBAHKAN RUTE INI */}
 
           {/* Rute Terproteksi: Hanya yang punya Token JWT yang bisa masuk */}
           <Route element={<ProtectedRoute />}>
