@@ -142,33 +142,67 @@ import InventoryPage from "./pages/InventoryPage";
 import SettingPage from "./pages/SettingPage";
 import FixedAssetPage from "./pages/FixedAssetPage";
 import FAQPage from "./pages/FAQPage";
+import { AuthProvider } from "../contexts/AuthContext";
+import LoginPage from "./pages/auth/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="accounts" element={<Accounts />} />
-          <Route path="journals" element={<Journals />} />
-          <Route path="produk" element={<Products />} />
-          <Route path="categories" element={<CategoryPage />} />
-          <Route path="contacts" element={<ContactPage />} />
-          <Route path="purchase/order" element={<PurchaseOrderPage />} />
-          <Route path="purchase/delivery" element={<PurchaseDeliveryPage />} />
-          <Route path="purchase/bill" element={<PurchaseBillPage />} />
-          <Route path="sales/order" element={<SalesOrderPage />} />
-          <Route path="sales/delivery" element={<SalesDeliveryPage />} />
-          <Route path="sales/bill" element={<SalesBillPage />} />
-          <Route path="/reports/profit-loss" element={<FinancialReportPage />} />
-          <Route path="/reports/balance-sheet" element={<FinancialReportPage />} />
-          <Route path="/expenses" element={<ExpensePage />} />
-          <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/settings" element={<SettingPage />} />
-          <Route path="/fixed-assets" element={<FixedAssetPage />} />
-          <Route path="/faq" element={<FAQPage />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        {/* <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="accounts" element={<Accounts />} />
+            <Route path="journals" element={<Journals />} />
+            <Route path="produk" element={<Products />} />
+            <Route path="categories" element={<CategoryPage />} />
+            <Route path="contacts" element={<ContactPage />} />
+            <Route path="purchase/order" element={<PurchaseOrderPage />} />
+            <Route path="purchase/delivery" element={<PurchaseDeliveryPage />} />
+            <Route path="purchase/bill" element={<PurchaseBillPage />} />
+            <Route path="sales/order" element={<SalesOrderPage />} />
+            <Route path="sales/delivery" element={<SalesDeliveryPage />} />
+            <Route path="sales/bill" element={<SalesBillPage />} />
+            <Route path="/reports/profit-loss" element={<FinancialReportPage />} />
+            <Route path="/reports/balance-sheet" element={<FinancialReportPage />} />
+            <Route path="/expenses" element={<ExpensePage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/settings" element={<SettingPage />} />
+            <Route path="/fixed-assets" element={<FixedAssetPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+          </Route>
+        </Routes> */}
+        <Routes>
+          {/* Rute Publik: Siapapun bisa akses */}
+          <Route path="/login" element={<LoginPage />} />
+
+          {/* Rute Terproteksi: Hanya yang punya Token JWT yang bisa masuk */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="accounts" element={<Accounts />} />
+              <Route path="journals" element={<Journals />} />
+              <Route path="produk" element={<Products />} />
+              <Route path="categories" element={<CategoryPage />} />
+              <Route path="contacts" element={<ContactPage />} />
+              <Route path="purchase/order" element={<PurchaseOrderPage />} />
+              <Route path="purchase/delivery" element={<PurchaseDeliveryPage />} />
+              <Route path="purchase/bill" element={<PurchaseBillPage />} />
+              <Route path="sales/order" element={<SalesOrderPage />} />
+              <Route path="sales/delivery" element={<SalesDeliveryPage />} />
+              <Route path="sales/bill" element={<SalesBillPage />} />
+              <Route path="reports/profit-loss" element={<FinancialReportPage />} />
+              <Route path="reports/balance-sheet" element={<FinancialReportPage />} />
+              <Route path="expenses" element={<ExpensePage />} />
+              <Route path="inventory" element={<InventoryPage />} />
+              <Route path="settings" element={<SettingPage />} />
+              <Route path="fixed-assets" element={<FixedAssetPage />} />
+              <Route path="faq" element={<FAQPage />} />
+            </Route>
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

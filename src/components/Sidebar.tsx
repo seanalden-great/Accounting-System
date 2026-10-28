@@ -421,6 +421,7 @@ import {
   Home, Package, HelpCircle, Receipt, Briefcase, Settings, Archive, Wallet, Book, Users, ChevronDown, ChevronRight, LogOut, PanelLeftClose, ShoppingCart, ShoppingBag, Star, LineChart,
   type LucideIcon 
 } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 type SubMenuItem = { name: string; path: string; };
 
@@ -436,6 +437,9 @@ type MenuItem = {
 export default function Sidebar() {
   const location = useLocation();
   const [openMenus, setOpenMenus] = useState<string[]>([]);
+
+  // Panggil user data dan fungsi logout
+  const { user, logout } = useAuth();
 
   const toggleMenu = (menuName: string) => {
     setOpenMenus((prev) => 
@@ -584,7 +588,7 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="border-t border-slate-800 p-4 shrink-0 flex items-center justify-between bg-slate-900">
+      {/* <div className="border-t border-slate-800 p-4 shrink-0 flex items-center justify-between bg-slate-900">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">U</div>
           <div className="overflow-hidden">
@@ -593,6 +597,26 @@ export default function Sidebar() {
           </div>
         </div>
         <button className="text-red-400 hover:text-red-500 p-1 transition-colors"><LogOut size={16} /></button>
+      </div> */}
+      <div className="border-t border-slate-800 p-4 shrink-0 flex items-center justify-between bg-slate-900">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+            {user?.full_name ? user.full_name.charAt(0).toUpperCase() : 'U'}
+          </div>
+          <div className="overflow-hidden">
+            <p className="text-sm font-bold text-white truncate">{user?.full_name || 'User Admin'}</p>
+            <p className="text-[10px] text-slate-400 font-medium truncate w-32 px-1.5 py-0.5 bg-slate-800 rounded mt-0.5 inline-block">
+              Role: {user?.role || 'Staff'}
+            </p>
+          </div>
+        </div>
+        <button 
+          onClick={logout} 
+          title="Keluar dari Sistem"
+          className="text-red-400 hover:text-red-500 hover:bg-red-400/10 p-2 rounded-lg transition-colors"
+        >
+          <LogOut size={18} />
+        </button>
       </div>
     </aside>
   );

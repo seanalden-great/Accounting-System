@@ -10,4 +10,16 @@ const api = axios.create({
   },
 });
 
+// Interceptor: Otomatis tempelkan Token JWT sebelum request dikirim
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 export default api;
