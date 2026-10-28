@@ -24,7 +24,7 @@ export default function RegisterPage() {
     setSuccessMsg('');
 
     try {
-      await axios.post('http://localhost:8080/api/auth/register', formData);
+      await axios.post('https://backend-bmp-internal-system.vercel.app/api/auth/register', formData);
       setSuccessMsg('Pendaftaran akun berhasil! Silakan login.');
       
       // Tunggu 2 detik lalu otomatis redirect ke halaman Login

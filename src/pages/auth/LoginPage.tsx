@@ -18,7 +18,7 @@
 
 //     try {
 //       // Pastikan URL mengarah ke auth/login
-//       const response = await axios.post('http://localhost:8080/api/auth/login', {
+//       const response = await axios.post('https://backend-bmp-internal-system.vercel.app/api/auth/login', {
 //         username,
 //         password
 //       });
@@ -121,7 +121,7 @@ export default function LoginPage() {
     setErrorMsg('');
 
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
+      const response = await axios.post('https://backend-bmp-internal-system.vercel.app/api/auth/login', {
         username,
         password
       });
